@@ -54,8 +54,9 @@ func StartMonitorHttpServer(ctx context.Context) {
 	addr := "0.0.0.0:9090"
 
 	hs := &http.Server{
-		Addr:    addr,
-		Handler: promhttp.Handler(),
+		Addr:        addr,
+		Handler:     promhttp.Handler(),
+		ReadTimeout: 5 * time.Second,
 	}
 
 	go func() {
