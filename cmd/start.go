@@ -40,7 +40,7 @@ func Run() int {
 	core.LoadConfig(ctx, quitLoopConfig)
 
 	go core.StartMonitorHttpServer(ctx)
-	httpServer := &http.Server{Addr: ":3005", Handler: &core.Server{}}
+	httpServer := &http.Server{Addr: ":3005", Handler: &core.Server{}, ReadTimeout: 5 * time.Second}
 
 	// http server graceful shutdown
 	go func() {
